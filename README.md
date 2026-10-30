@@ -126,49 +126,88 @@ adb version
 
 ---
 
+## ⚙️ How It Works
+
+Samsung Galaxy Watches (and other Wear OS devices) run on Android. They have the standard **Android Debug Bridge (ADB)** built into Developer Options over your local Wi-Fi network.
+
+* **Reversible Package Suspension:** CleanYourWatch uses `pm disable-user --user 0 <package>` to safely deactivate unwanted apps, telemetry, and background services. The APK remains safely preserved in the read-only system partition — meaning **no root is required**, **no system files are deleted**, and **no bricking can occur**.
+* **Instant One-Click Revert:** Before touching any package, the tool automatically saves a timestamped snapshot of all package states to `backups/`. Running `./restore.sh` or `python3 main.py restore` instantly re-enables any package back to its original state.
+* **Live Resource Profiling:** The tool queries Android's low-level memory manager (`dumpsys meminfo`), service manager, process table, and `/proc/loadavg` before and after debloating to calculate the exact delta of RAM reclaimed, processes terminated, and background services stopped.
+* **Strict Blacklist Safety Guard:** A hardcoded safety blacklist prevents accidental modification of critical system components (System UI, Bluetooth stack, Settings, Watchface Runtime, On-screen Keyboard, Phone services).
+
+---
+
 ## 🚀 Quick Start
 
-### 1. Enable Wireless Debugging & Pair your Watch
+### ⚡ Method A: The 1-Prompt AI Setup (Recommended)
 
-1. On your watch, navigate to **Settings > About watch > Software info**.
-2. Tap **Software version** 7 times until Developer Mode is unlocked.
-3. Go back to **Settings > Developer options**.
-4. Enable **ADB debugging** and **Wireless debugging** (ensure your watch and computer are on the same Wi-Fi network).
+Just like [CleanYourTV](https://github.com/Gathin23/cleanyourtv), CleanYourWatch is designed for **AI coding assistants** with shell access (such as Cursor, Claude Code, Antigravity, Gemini CLI, or GitHub Copilot Workspace).
 
-#### 🔑 Pairing (Required on Wear OS 4, 5 & 6)
-Modern Wear OS versions require pairing before connecting:
-1. Tap **Wireless debugging > Pair new device with pairing code**.
-2. Your watch will display a **6-digit pairing code** and an **IP address with a pairing port** (e.g. `192.168.31.47:37123`).
-3. In your computer's terminal, run:
+1. Clone this repository to your computer:
    ```bash
-   adb pair <watch_ip>:<pairing_port>
-   # Example: adb pair 192.168.31.47:37123
+   git clone https://github.com/pedrohrsilva/cleanyourwatch.git
+   cd cleanyourwatch
    ```
-4. Enter the 6-digit code when prompted until you see `Successfully paired`.
+2. Enable Wireless Debugging on your watch ([see instructions below](#-enabling-wireless-debugging--pairing)).
+3. Open this folder in your AI coding assistant and copy-paste this prompt:
 
-#### 🔗 Connect to the Watch
-1. Return to the main **Wireless debugging** screen on your watch to view the **Connection port** (e.g. `192.168.31.47:44713` — *note: this port is different from the pairing port*).
-2. Connect from your terminal:
-   ```bash
-   adb connect <watch_ip>:<connect_port>
-   # Example: adb connect 192.168.31.47:44713
-   ```
-3. Verify connection with `adb devices`. You should see your watch listed as `device`.
+> **Copy & Paste into your AI Assistant:**
+> ```text
+> Optimize and debloat my Wear OS smartwatch using the CleanYourWatch repository.
+> Watch Model: Galaxy Watch 6 (SM-R940)
+> Watch IP:Port: <your_watch_ip>:<connect_port>
+>
+> Follow the workflow in PROMPT.md: measure pre-debloat resources, ask my preferences for contactless payments, Samsung Health, voice assistants, and stock watch faces, create a safety backup, safely suspend unwanted packages, and output the before-and-after resource comparison table.
+> ```
 
-### 2. Run CleanYourWatch
+The AI assistant will handle everything interactively, confirming your choices before applying any changes!
 
-Clone and launch the interactive tool:
+---
+
+### 💻 Method B: Interactive CLI (Manual)
+
+If you prefer running the interactive tool directly from your terminal:
 
 ```bash
-git clone git@github.com:pedrohrsilva/cleanyourwatch.git
+git clone https://github.com/pedrohrsilva/cleanyourwatch.git
 cd cleanyourwatch
 chmod +x main.py run.sh restore.sh
 
-# Run interactive debloater (measures before, asks choices, creates backup, measures after)
+# Start the interactive debloater
 ./run.sh
-# or directly:
+# or directly with python:
 python3 main.py debloat
 ```
+
+---
+
+### 📶 Enabling Wireless Debugging & Pairing
+
+Before running the tool, connect your watch to your computer over Wi-Fi:
+
+1. **Enable Developer Options:**
+   * On your watch, open **Settings > About watch > Software info**.
+   * Tap **Software version** 7 times until you see the *"Developer mode turned on"* notification.
+2. **Turn on Wireless Debugging:**
+   * Go back to **Settings > Developer options**.
+   * Turn ON **ADB debugging** and **Wireless debugging** (make sure watch & computer are on the same Wi-Fi).
+3. **Pair the Watch (Wear OS 4 / 5 / 6):**
+   * Tap **Wireless debugging > Pair new device with pairing code**.
+   * Note the **6-digit pairing code** and the **IP address & pairing port** (e.g. `192.168.31.47:37123`).
+   * In your computer's terminal, run:
+     ```bash
+     adb pair <watch_ip>:<pairing_port>
+     # Example: adb pair 192.168.31.47:37123
+     ```
+   * Enter the 6-digit code when prompted until you see `Successfully paired`.
+4. **Connect to the Watch:**
+   * Go back to the main **Wireless debugging** screen and note the **Connection port** (e.g. `192.168.31.47:44713` — *note: connection port differs from pairing port*).
+   * Run:
+     ```bash
+     adb connect <watch_ip>:<connect_port>
+     # Example: adb connect 192.168.31.47:44713
+     ```
+   * Check connection: `adb devices` (your watch should show as `device`).
 
 ---
 
