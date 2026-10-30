@@ -72,6 +72,60 @@ By removing telemetry loops, continuous audio listening, and memory paging press
 
 ---
 
+## 📋 Requirements
+
+* **Python 3.8+** (Uses only Python's standard library — zero external pip packages required).
+* **ADB (Android Debug Bridge)**:
+
+### How to Install ADB
+
+<details>
+<summary><b>🍎 macOS</b></summary>
+
+Using [Homebrew](https://brew.sh/):
+```bash
+brew install android-platform-tools
+```
+</details>
+
+<details>
+<summary><b>🪟 Windows</b></summary>
+
+Using **winget** (Windows Package Manager):
+```powershell
+winget install Google.PlatformTools
+```
+Or using **Chocolatey**:
+```powershell
+choco install adb
+```
+*(Alternatively, download the official [Google SDK Platform Tools zip](https://developer.android.com/tools/releases/platform-tools) and extract it to a folder in your system PATH).*
+</details>
+
+<details>
+<summary><b>🐧 Linux</b></summary>
+
+* **Ubuntu / Debian / Linux Mint:**
+  ```bash
+  sudo apt update && sudo apt install -y android-tools-adb android-tools-fastboot
+  ```
+* **Fedora / RHEL:**
+  ```bash
+  sudo dnf install -y android-tools
+  ```
+* **Arch Linux:**
+  ```bash
+  sudo pacman -S android-tools
+  ```
+</details>
+
+Once installed, verify it by running:
+```bash
+adb version
+```
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Enable Wireless Debugging & Pair your Watch
