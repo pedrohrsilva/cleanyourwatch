@@ -5,7 +5,7 @@ Use this prompt template when delegating Samsung Galaxy Watch debloating and res
 ```markdown
 You are optimizing a Samsung Galaxy Watch 6 (SM-R940) running Wear OS using the CleanYourWatch toolkit.
 
-Device IP:Port: 192.168.31.47:44713
+Device IP:Port: 192.168.31.47:44713 (paired via `adb pair` if needed, then `adb connect`)
 
 Your goals:
 1. Benchmark current system resources (Total/Used/Free RAM, ZRAM swap, running background services, and top memory consumers) using `python3 main.py measure`.

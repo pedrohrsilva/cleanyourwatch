@@ -74,17 +74,32 @@ By removing telemetry loops, continuous audio listening, and memory paging press
 
 ## 🚀 Quick Start
 
-### 1. Enable Wireless Debugging on your Watch
+### 1. Enable Wireless Debugging & Pair your Watch
 
 1. On your watch, navigate to **Settings > About watch > Software info**.
 2. Tap **Software version** 7 times until Developer Mode is unlocked.
 3. Go back to **Settings > Developer options**.
-4. Enable **ADB debugging** and **Wireless debugging**.
-5. Note the IP address and port, then connect from your terminal:
+4. Enable **ADB debugging** and **Wireless debugging** (ensure your watch and computer are on the same Wi-Fi network).
+
+#### 🔑 Pairing (Required on Wear OS 4, 5 & 6)
+Modern Wear OS versions require pairing before connecting:
+1. Tap **Wireless debugging > Pair new device with pairing code**.
+2. Your watch will display a **6-digit pairing code** and an **IP address with a pairing port** (e.g. `192.168.31.47:37123`).
+3. In your computer's terminal, run:
    ```bash
-   adb connect <watch_ip>:<port>
-   # e.g.: adb connect 192.168.31.47:44713
+   adb pair <watch_ip>:<pairing_port>
+   # Example: adb pair 192.168.31.47:37123
    ```
+4. Enter the 6-digit code when prompted until you see `Successfully paired`.
+
+#### 🔗 Connect to the Watch
+1. Return to the main **Wireless debugging** screen on your watch to view the **Connection port** (e.g. `192.168.31.47:44713` — *note: this port is different from the pairing port*).
+2. Connect from your terminal:
+   ```bash
+   adb connect <watch_ip>:<connect_port>
+   # Example: adb connect 192.168.31.47:44713
+   ```
+3. Verify connection with `adb devices`. You should see your watch listed as `device`.
 
 ### 2. Run CleanYourWatch
 
