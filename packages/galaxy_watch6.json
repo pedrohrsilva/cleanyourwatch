@@ -517,6 +517,8 @@
     "com.android.permissioncontroller",
     "com.google.android.packageinstaller",
     "com.samsung.wear.watchface.runtime",
+    "com.samsung.android.watch.watchface.companionhelper",
+    "com.samsung.android.watch.watchface.complicationhelper",
     "com.android.server.telecom",
     "com.android.phone",
     "com.google.wear.services",

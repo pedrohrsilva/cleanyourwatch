@@ -4,3 +4,4 @@ __pycache__/
 backups/*.json
 snapshots/*.json
 packages/installed_raw.json
+screenshots/*.png

@@ -28,8 +28,12 @@ class BenchmarkEngine:
         build_id = self.adb.build_id
 
         # 2. Memory (dumpsys meminfo)
-        meminfo_out = self.adb.shell("dumpsys meminfo", timeout=35)
+        meminfo_out = self.adb.shell("dumpsys meminfo", timeout=45)
         ram, top_procs = self._parse_meminfo(meminfo_out)
+        if ram.total_kb == 0:
+            time.sleep(3)
+            meminfo_out = self.adb.shell("dumpsys meminfo", timeout=45)
+            ram, top_procs = self._parse_meminfo(meminfo_out)
 
         # 3. Storage (df -k /data)
         df_out = self.adb.shell("df -k /data")
