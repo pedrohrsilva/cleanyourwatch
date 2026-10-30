@@ -1,0 +1,529 @@
+{
+  "device": "Galaxy Watch 6 (SM-R940)",
+  "version": "1.0.0",
+  "categories": {
+    "telemetry_and_bloat": {
+      "title": "Telemetry, Analytics & Retail Bloat",
+      "description": "Background logging, tracking, ads, and diagnostic services. Safe to disable with zero impact on watch functions.",
+      "default_action": "disable",
+      "packages": [
+        {
+          "package_name": "com.sec.android.diagmonagent",
+          "display_name": "Samsung Diagnostic Monitor",
+          "safety": "recommended",
+          "description": "Collects diagnostic and usage logs in the background and sends telemetry to Samsung.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.samsung.sree",
+          "display_name": "Samsung Global Goals",
+          "safety": "recommended",
+          "description": "Lock screen ads and donation wallpapers. Wakes screen and uses background data.",
+          "memory_impact": "low",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.samsung.sree.spin",
+          "display_name": "Samsung Global Goals Spin",
+          "safety": "recommended",
+          "description": "Interactive ad mini-game component for Samsung Global Goals.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.sree.countdown",
+          "display_name": "Samsung Global Goals Countdown",
+          "safety": "recommended",
+          "description": "Countdown banner for Global Goals promotions.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.sree.digital",
+          "display_name": "Samsung Global Goals Digital",
+          "safety": "recommended",
+          "description": "Digital ad watchface/tile for Global Goals.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.sree.classic",
+          "display_name": "Samsung Global Goals Classic",
+          "safety": "recommended",
+          "description": "Classic ad watchface/tile for Global Goals.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.apps.wearable.retailattractloop",
+          "display_name": "Retail Attract Loop Demo",
+          "safety": "recommended",
+          "description": "Store demo mode loop for store display models.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.watch.runestone.app",
+          "display_name": "Samsung Rubin (Customization Service)",
+          "safety": "recommended",
+          "description": "Monitors device usage habits to serve targeted content and suggestions. Uses constant memory.",
+          "memory_impact": "high",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.sec.android.app.felicatest",
+          "display_name": "FeliCa NFC Test",
+          "safety": "recommended",
+          "description": "Carrier and factory test suite for Japanese FeliCa NFC chip.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.nfc.felicalocktest",
+          "display_name": "FeliCa Lock Test",
+          "safety": "recommended",
+          "description": "Test fixture for NFC chip lock testing.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.android.app.wlantest",
+          "display_name": "WLAN Factory Test",
+          "safety": "recommended",
+          "description": "Wi-Fi diagnostic factory test mode.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.android.app.servicemodeapp",
+          "display_name": "Service Mode App",
+          "safety": "recommended",
+          "description": "Samsung engineering and service dialer menus.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.facatfunction",
+          "display_name": "Factory Automation CAT",
+          "safety": "recommended",
+          "description": "Samsung factory line testing harness.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sem.factoryapp",
+          "display_name": "SEM Factory App",
+          "safety": "recommended",
+          "description": "Samsung factory diagnostic tool.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.android.app.factorykeystring",
+          "display_name": "Factory Keystring",
+          "safety": "recommended",
+          "description": "Factory keystring handler for automated test fixtures.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.providers.factory",
+          "display_name": "Factory Test Provider",
+          "safety": "recommended",
+          "description": "Internal test data provider.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.android.app.parser",
+          "display_name": "Factory Parser",
+          "safety": "recommended",
+          "description": "Command parser for factory QA testing.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.aircommandmanager",
+          "display_name": "Factory Air Command Manager",
+          "safety": "recommended",
+          "description": "Unused S-Pen air command stub leftover from phone firmware.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.dqagent",
+          "display_name": "Samsung DQ Agent",
+          "safety": "recommended",
+          "description": "Device quality agent gathering crash statistics.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.gru",
+          "display_name": "Galaxy Resource Utility",
+          "safety": "recommended",
+          "description": "Telemetry logging utility.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "voice_assistants": {
+      "title": "Voice Assistants (Bixby & Google Assistant)",
+      "description": "Always-listening voice triggers and voice assistant apps. Disabling these significantly saves RAM and battery.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.samsung.android.bixby.wakeup",
+          "display_name": "Bixby Voice Wakeup",
+          "safety": "optional",
+          "description": "Continuously listens to microphone for 'Hi Bixby'. High battery and standby drain.",
+          "memory_impact": "medium",
+          "battery_impact": "high"
+        },
+        {
+          "package_name": "com.samsung.android.bixby.agent",
+          "display_name": "Bixby Voice Assistant",
+          "safety": "optional",
+          "description": "Samsung Bixby voice assistant client.",
+          "memory_impact": "high",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.google.android.wearable.assistant",
+          "display_name": "Google Assistant",
+          "safety": "optional",
+          "description": "Google Assistant on Wear OS. Uses ~40MB RAM continuously.",
+          "memory_impact": "high",
+          "battery_impact": "high"
+        },
+        {
+          "package_name": "com.samsung.android.intellivoiceservice",
+          "display_name": "Samsung Intelligent Voice Service",
+          "safety": "optional",
+          "description": "Voice recognition backend service for Samsung speech models.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "payments": {
+      "title": "Contactless Payments (Samsung Wallet & Google Wallet)",
+      "description": "Payment and wallet services. You can keep Samsung Pay, keep Google Wallet, keep both, or disable both.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.samsung.android.samsungpay.gear",
+          "display_name": "Samsung Pay / Samsung Wallet",
+          "safety": "optional",
+          "description": "Samsung Pay for Galaxy Watch. Long-press back button opens this by default.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.apps.walletnfcrel",
+          "display_name": "Google Wallet / Google Pay",
+          "safety": "optional",
+          "description": "Google Wallet contactless payment app.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "samsung_health": {
+      "title": "Samsung Health & Fitness Suite",
+      "description": "Step counting, heart rate, sleep tracking, ECG, and blood pressure. Keep if you track workouts or vitals on your watch.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.samsung.android.wear.shealth",
+          "display_name": "Samsung Health App",
+          "safety": "optional",
+          "description": "Main Samsung Health UI, tiles, activity tracking, and workout recording (~56MB RAM).",
+          "memory_impact": "high",
+          "battery_impact": "high"
+        },
+        {
+          "package_name": "com.samsung.android.service.health",
+          "display_name": "Samsung Health Background Service",
+          "safety": "optional",
+          "description": "Core sensor listener and health data provider for Samsung Health.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.samsung.android.shealthmonitor",
+          "display_name": "Samsung Health Monitor (ECG & BP)",
+          "safety": "optional",
+          "description": "ECG (Electrocardiogram) and Blood Pressure measurement app.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.partron.sensor.samsunghealthhelper",
+          "display_name": "Health Sensor Helper",
+          "safety": "optional",
+          "description": "Sensor calibration companion for Samsung Health.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "samsung_ecosystem": {
+      "title": "Samsung Ecosystem & Accessory Apps",
+      "description": "Convenience apps and phone sync features. Disable what you do not use.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.samsung.android.oneconnect",
+          "display_name": "SmartThings",
+          "safety": "optional",
+          "description": "Samsung SmartThings smart home and IoT control from your wrist.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.samsung.android.watch.budscontroller",
+          "display_name": "Galaxy Buds Controller",
+          "safety": "optional",
+          "description": "Quick settings and noise cancellation toggle tile for Samsung Galaxy Buds.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.android.app.sbrowser",
+          "display_name": "Samsung Internet Browser",
+          "safety": "optional",
+          "description": "Web browser for the watch screen. Consumes significant RAM when cached (~55MB).",
+          "memory_impact": "high",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.wear.voicerecorder",
+          "display_name": "Samsung Voice Recorder",
+          "safety": "optional",
+          "description": "Voice audio recorder app.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.wear.calculator",
+          "display_name": "Samsung Calculator",
+          "safety": "optional",
+          "description": "Calculator utility on watch.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.app.routines",
+          "display_name": "Samsung Modes & Routines",
+          "safety": "optional",
+          "description": "Syncs automated modes and routines with phone. Uses ~52MB RAM.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.samsung.android.watch.cameracontroller",
+          "display_name": "Samsung Camera Controller",
+          "safety": "optional",
+          "description": "Viewfinder preview and remote shutter button for Samsung Galaxy phone camera.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.watch.compass",
+          "display_name": "Samsung Compass",
+          "safety": "optional",
+          "description": "Compass sensor app.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.watch.flashlight",
+          "display_name": "Flashlight",
+          "safety": "optional",
+          "description": "White screen maximum brightness flashlight app.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.gallery.watch",
+          "display_name": "Samsung Watch Gallery",
+          "safety": "optional",
+          "description": "Photo viewer synchronized from Samsung Galaxy phone gallery.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.wear.musictransfer",
+          "display_name": "Samsung Music Transfer",
+          "safety": "optional",
+          "description": "Transfers MP3 music tracks from phone storage to watch storage over Wi-Fi/BT.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.wearable.music",
+          "display_name": "Samsung Music Watch Player",
+          "safety": "optional",
+          "description": "Standalone music player for offline audio files stored on watch.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.sec.android.easyMover",
+          "display_name": "Smart Switch for Watch",
+          "safety": "optional",
+          "description": "Data transfer utility when migrating watch setup to a new phone.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.wear.smartswitchassistant",
+          "display_name": "Smart Switch Assistant",
+          "safety": "optional",
+          "description": "Background helper daemon for Smart Switch data migrations (~33MB RAM).",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.watch.selfdiagnostics",
+          "display_name": "Self Diagnostics Tool",
+          "safety": "optional",
+          "description": "Hardware self-test tool in Device Care.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.samsung.android.mcfds",
+          "display_name": "Samsung MCF Device Sync",
+          "safety": "optional",
+          "description": "Multi-Control Framework syncing clipboard and controls between Galaxy devices.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "samsung_stock_watchfaces": {
+      "title": "Pre-installed Samsung Watch Faces",
+      "description": "Samsung ships over 35 pre-installed watch faces. Each has assets and complication listeners. If you use a custom or third-party watch face, disabling these saves storage and background overhead.",
+      "default_action": "ask",
+      "packages": [
+        { "package_name": "com.samsung.android.watch.watchface.flowergarden", "display_name": "Flower Garden Watch Face", "safety": "optional", "description": "Stock flower garden watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.animal", "display_name": "Animal Watch Face", "safety": "optional", "description": "Stock animated animals watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.endangeredanimal", "display_name": "Endangered Animals Watch Face", "safety": "optional", "description": "Stock endangered animal graphics watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.sleepcoaching", "display_name": "Sleep Coaching Watch Face", "safety": "optional", "description": "Stock sleep coaching mascot watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.mypebble", "display_name": "My Pebble Watch Face", "safety": "optional", "description": "Stock pebble style watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.stretchindex", "display_name": "Stretch Index Watch Face", "safety": "optional", "description": "Stock stretch index watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.healthmodular", "display_name": "Health Modular Watch Face", "safety": "optional", "description": "Stock health modular widgets watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.digitalmodular", "display_name": "Digital Modular Watch Face", "safety": "optional", "description": "Stock digital modular watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.basicclock", "display_name": "Basic Clock Watch Face", "safety": "optional", "description": "Stock simple analog basic clock.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.analogmodular", "display_name": "Analog Modular Watch Face", "safety": "optional", "description": "Stock analog modular dials watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.perpetual", "display_name": "Perpetual Watch Face", "safety": "optional", "description": "Stock perpetual calendar dial.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.weather", "display_name": "Weather Watch Face", "safety": "optional", "description": "Stock animated weather watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.bespoke", "display_name": "Bespoke Watch Face", "safety": "optional", "description": "Stock customizable bespoke studio face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.frontier", "display_name": "Frontier Watch Face", "safety": "optional", "description": "Stock Gear S3 / Galaxy legacy frontier face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.simplecomplication", "display_name": "Simple Complication Face", "safety": "optional", "description": "Stock minimalist complications face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.boldindex", "display_name": "Bold Index Watch Face", "safety": "optional", "description": "Stock bold index watch face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.tickingsound", "display_name": "Ticking Sound Face", "safety": "optional", "description": "Stock analog face with tick audio effects.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.gradientfont", "display_name": "Gradient Font Face", "safety": "optional", "description": "Stock gradient numerals face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.ultrainfoboard", "display_name": "Ultra Info Board Face", "safety": "optional", "description": "Stock dense info board dial face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.activitynumber", "display_name": "Activity Number Face", "safety": "optional", "description": "Stock activity progress numbers face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.livewallpaper", "display_name": "Live Wallpaper Face", "safety": "optional", "description": "Stock dynamic live background face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.spherenumber", "display_name": "Sphere Number Face", "safety": "optional", "description": "Stock 3D sphere numeral face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.simpleclassic", "display_name": "Simple Classic Face", "safety": "optional", "description": "Stock simple classic analog face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.digitalfont", "display_name": "Digital Font Face", "safety": "optional", "description": "Stock large digital font face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.photosticker", "display_name": "Photo Sticker Face", "safety": "optional", "description": "Stock photo sticker collage face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.aremoji", "display_name": "AR Emoji Watch Face", "safety": "optional", "description": "Stock 3D AR animated emoji face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.myphoto", "display_name": "My Photo+ Face", "safety": "optional", "description": "Stock phone photo frame face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.face", "display_name": "Standard Face Component", "safety": "optional", "description": "Stock watchface preset.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.infomodular", "display_name": "Info Modular Face", "safety": "optional", "description": "Stock multi-gauge modular dial face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.together", "display_name": "Together Face", "safety": "optional", "description": "Stock friend step challenge comparison face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.bitmoji", "display_name": "Bitmoji Face", "safety": "optional", "description": "Snapchat / Bitmoji animated avatar face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.dualwatch", "display_name": "Dual Watch Face", "safety": "optional", "description": "Stock dual time zone clock face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.premiumanalog", "display_name": "Premium Analog Face", "safety": "optional", "description": "Stock luxury premium chronograph analog face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.typography", "display_name": "Typography Face", "safety": "optional", "description": "Stock artistic typography time face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.spatialnumber", "display_name": "Spatial Number Face", "safety": "optional", "description": "Stock spatial numeral layout face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.emergency", "display_name": "Emergency Medical Face", "safety": "optional", "description": "Medical emergency badge watchface layout.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.basicdashboard", "display_name": "Basic Dashboard Face", "safety": "optional", "description": "Stock circular dashboard face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.mystyle", "display_name": "My Style Pattern Face", "safety": "optional", "description": "Generates watchface pattern matching clothing.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.simpleanalogue", "display_name": "Simple Analogue Face", "safety": "optional", "description": "Stock clean analog hands face.", "memory_impact": "low", "battery_impact": "low" },
+        { "package_name": "com.samsung.android.watch.watchface.dynamicfont", "display_name": "Dynamic Font Face", "safety": "optional", "description": "Stock dynamic sizing clock font face.", "memory_impact": "low", "battery_impact": "low" }
+      ]
+    },
+    "google_optional": {
+      "title": "Google Wear OS Optional Apps",
+      "description": "Google apps that can be safely disabled if you do not use them.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.google.android.apps.messaging",
+          "display_name": "Google Messages",
+          "safety": "optional",
+          "description": "Google Messages Wear OS client (~38MB RAM). Keep if you use Google Messages on phone.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.google.android.apps.maps",
+          "display_name": "Google Maps",
+          "safety": "optional",
+          "description": "Google Maps turn-by-turn navigation on watch.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.google.android.apps.youtube.music",
+          "display_name": "YouTube Music",
+          "safety": "optional",
+          "description": "YouTube Music streaming & offline player.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.google.android.tts",
+          "display_name": "Google Speech Recognition & TTS",
+          "safety": "optional",
+          "description": "Google Text-to-Speech engine.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.marvin.talkback",
+          "display_name": "Android TalkBack (Screen Reader)",
+          "safety": "optional",
+          "description": "Accessibility screen reader service for visually impaired users.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    }
+  },
+  "critical_blacklist": [
+    "android",
+    "com.samsung.android.wearable.sysui",
+    "com.google.android.apps.wearable.systemui",
+    "com.google.android.apps.wearable.settings",
+    "com.google.android.wearable.app",
+    "com.google.android.gms",
+    "com.google.android.gsf",
+    "com.android.vending",
+    "com.android.bluetooth",
+    "com.android.networkstack",
+    "com.android.networkstack.process",
+    "com.samsung.android.honeyboard",
+    "com.android.inputdevices",
+    "com.android.permissioncontroller",
+    "com.google.android.packageinstaller",
+    "com.samsung.wear.watchface.runtime",
+    "com.android.server.telecom",
+    "com.android.phone",
+    "com.google.wear.services",
+    "com.samsung.android.wearable.samsungaccount",
+    "com.samsung.android.watch.screencapture",
+    "com.android.providers.settings",
+    "com.android.keychain",
+    "com.google.android.clockwork.font.sandbox.impl"
+  ]
+}

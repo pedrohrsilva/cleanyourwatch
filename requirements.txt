@@ -1,0 +1,2 @@
+# CleanYourWatch has zero external dependencies!
+# Standard Python 3.8+ is all you need.
