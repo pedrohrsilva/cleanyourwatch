@@ -1,0 +1,27 @@
+{
+  "name": "safe",
+  "title": "Safe (Minimal / Zero-Risk)",
+  "description": "Suspends background telemetry, Samsung Global Goals ads, store demo loops, and factory test fixtures. Zero impact on daily features.",
+  "packages": [
+    "com.sec.android.diagmonagent",
+    "com.samsung.sree",
+    "com.samsung.sree.spin",
+    "com.samsung.sree.countdown",
+    "com.samsung.sree.digital",
+    "com.samsung.sree.classic",
+    "com.google.android.apps.wearable.retailattractloop",
+    "com.samsung.android.watch.runestone.app",
+    "com.sec.android.app.felicatest",
+    "com.sec.nfc.felicalocktest",
+    "com.sec.android.app.wlantest",
+    "com.sec.android.app.servicemodeapp",
+    "com.sec.facatfunction",
+    "com.sem.factoryapp",
+    "com.sec.android.app.factorykeystring",
+    "com.samsung.android.providers.factory",
+    "com.sec.android.app.parser",
+    "com.samsung.android.aircommandmanager",
+    "com.samsung.android.dqagent",
+    "com.samsung.android.gru"
+  ]
+}

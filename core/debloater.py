@@ -105,9 +105,54 @@ class DebloatEngine:
         results["unclassified"] = unclassified
         return results
 
+    def load_preset(self, preset_name: str) -> List[str]:
+        """Loads a debloat preset by name (e.g. 'safe', 'balanced', 'extreme')."""
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        preset_file = os.path.join(base_dir, "presets", f"{preset_name.lower().replace('.json', '')}.json")
+        if not os.path.isfile(preset_file):
+            raise ValueError(f"Preset '{preset_name}' not found. Available presets: safe, balanced, extreme")
+
+        with open(preset_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        raw_pkgs = data.get("packages", [])
+        installed = self.adb.get_installed_packages()
+        disabled = self.adb.get_disabled_packages()
+
+        # Filter against blacklist, installed, and already disabled
+        filtered = [
+            pkg for pkg in raw_pkgs
+            if pkg not in self.blacklist and pkg in installed and pkg not in disabled
+        ]
+        return filtered
+
     def interactive_wizard(self) -> List[str]:
         """Interactive questions asking the user what to keep and what to disable."""
-        print_section("Customization Wizard: Select What To Keep")
+        print_section("Customization Wizard: Select Profile")
+
+        profile_choice = prompt_choice(
+            "Select a debloat strategy for your watch:",
+            [
+                "Balanced (Recommended Daily Driver): Keeps Google Wallet, Samsung Health, & Ecosystem; disables telemetry & Bixby mic wakeup",
+                "Safe (Minimal): Disables only telemetry, ads, and store demos; keeps 100% of features",
+                "Extreme (Maximum Battery & RAM): Disables all voice assistants, heavy apps, & 40+ OEM watch faces",
+                "Custom Step-by-Step Wizard: Choose category-by-category what to keep"
+            ],
+            default_idx=0
+        )
+
+        if profile_choice == 0:
+            print_info("Loaded Balanced profile.")
+            return self.load_preset("balanced")
+        elif profile_choice == 1:
+            print_info("Loaded Safe profile.")
+            return self.load_preset("safe")
+        elif profile_choice == 2:
+            print_info("Loaded Extreme profile.")
+            return self.load_preset("extreme")
+
+        # Fall through to step-by-step questionnaire
+        print_section("Step-by-Step Customization")
         packages_to_disable: Set[str] = set()
 
         installed = self.adb.get_installed_packages()

@@ -1,0 +1,29 @@
+{
+  "name": "balanced",
+  "title": "Balanced (Recommended Daily Driver)",
+  "description": "Suspends all telemetry and ad bloat, keeps Google Wallet while disabling Samsung Pay, and turns off continuous Bixby mic wakeup while keeping Samsung Health, ecosystem apps, and stock watch faces.",
+  "packages": [
+    "com.sec.android.diagmonagent",
+    "com.samsung.sree",
+    "com.samsung.sree.spin",
+    "com.samsung.sree.countdown",
+    "com.samsung.sree.digital",
+    "com.samsung.sree.classic",
+    "com.google.android.apps.wearable.retailattractloop",
+    "com.samsung.android.watch.runestone.app",
+    "com.sec.android.app.felicatest",
+    "com.sec.nfc.felicalocktest",
+    "com.sec.android.app.wlantest",
+    "com.sec.android.app.servicemodeapp",
+    "com.sec.facatfunction",
+    "com.sem.factoryapp",
+    "com.sec.android.app.factorykeystring",
+    "com.samsung.android.providers.factory",
+    "com.sec.android.app.parser",
+    "com.samsung.android.aircommandmanager",
+    "com.samsung.android.dqagent",
+    "com.samsung.android.gru",
+    "com.samsung.android.samsungpay.gear",
+    "com.samsung.android.bixby.wakeup"
+  ]
+}

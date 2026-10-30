@@ -15,12 +15,14 @@ Choose your preferred path below:
 | :--- | :--- | :--- |
 | ⚡ **Debloat with AI (1-Prompt)** | [**1-Prompt AI Setup**](#method-a-ai-setup) | Copy-paste prompt into Cursor, Claude Code, Antigravity |
 | 💻 **Debloat Manually (CLI)** | [**Interactive Terminal CLI**](#method-b-manual-cli) | Run `./run.sh` with interactive questionnaire |
+| 🏎️ **Performance & Speed Tuning** | [**Speed & Animation Tuning**](#performance-tuning) | 2x faster UI animations (0.5x) & Wi-Fi battery savings |
+| 🎯 **Use Predefined Presets** | [**Debloat Presets**](#debloat-presets) | 1-command runs: `safe`, `balanced`, or `extreme` |
 | 📶 **Connect Watch over Wi-Fi** | [**Wi-Fi ADB & Pairing Guide**](#wifi-pairing) | Unlock developer options & pair watch wirelessly |
 | 📋 **Install Prerequisites** | [**Requirements & ADB Install**](#requirements) | 1-line ADB install commands for Mac, Windows, Linux |
 | 📊 **View Real Benchmark Data** | [**Galaxy Watch 6 Results**](#benchmark-results) | Live RAM, process reduction, and delta table |
 | 🔋 **Check Battery Impact** | [**Estimated Battery Savings**](#battery-savings) | Expected runtime gains (+15% to +50% per charge) |
 | ⚙️ **Understand the Architecture** | [**How It Works & Safety**](#how-it-works) | Why it's 100% reversible, safe, and zero-root |
-| 📖 **Explore CLI Options** | [**CLI Command Reference**](#cli-commands) | `measure`, `list`, `debloat`, `compare`, `restore` |
+| 📖 **Explore CLI Options** | [**CLI Command Reference**](#cli-commands) | `tune`, `measure`, `list`, `debloat`, `compare`, `restore` |
 | 🗂️ **Browse Bloatware List** | [**Package Catalog Overview**](#package-catalog) | All 260+ Galaxy Watch packages categorized |
 | 🛡️ **Revert & Undo** | [**Safety & Restoration Guide**](#safety-guarantee) | One-command full factory restoration |
 
@@ -260,18 +262,56 @@ python3 main.py list
 ```
 Scans and categorizes all 260+ watch packages into Telemetry, Voice Assistants, Payments, Health, Ecosystem, and Watch Faces.
 
-### 4. Interactive Debloat Wizard
+<a id="debloat-presets"></a>
+### 4. Debloat Presets & Interactive Wizard
+
+Run the interactive wizard:
 ```bash
 python3 main.py debloat
 ```
-Guides you through selecting which features to retain, automatically takes pre/post benchmark snapshots, and outputs a formatted comparison table.
 
-You can also pass a custom list of packages directly:
+Or apply a predefined preset instantly with a single command:
+```bash
+# 1. Safe (Minimal): Disables only telemetry & ads, keeps 100% of apps
+python3 main.py debloat --preset safe -y
+
+# 2. Balanced (Recommended): Safe + disables Bixby wakeup & Samsung Pay (keeps Google Wallet & Health)
+python3 main.py debloat --preset balanced -y
+
+# 3. Extreme (Max Battery): Disables all voice assistants, heavy apps & 40+ OEM watch faces
+python3 main.py debloat --preset extreme -y
+```
+
+You can also pass a custom target file:
 ```bash
 python3 main.py debloat -t presets/user_plan.txt -y
 ```
 
-### 5. Instant Revert & Restore
+---
+
+<a id="performance-tuning"></a>
+### 5. 🏎️ Performance & System Tuning (`tune`)
+
+Beyond disabling bloatware, CleanYourWatch tunes Android system animation scales and Wi-Fi radio behavior to make your watch feel twice as responsive:
+
+```bash
+# Apply speed (0.5x animations) & battery optimizations
+python3 main.py tune
+
+# Check current optimization status
+python3 main.py tune --status
+
+# Revert animations & Wi-Fi scan to factory defaults (1.0x)
+python3 main.py tune --restore
+```
+
+**What it optimizes:**
+* **Window & Transition Animations:** Reduced from `1.0x` to `0.5x` (or `0.0x`), eliminating sluggish UI frame lag on Wear OS.
+* **Wi-Fi Background Scanning:** Turned `OFF` when Wi-Fi is disabled, preventing constant radio location probing.
+
+---
+
+### 6. Instant Revert & Restore
 ```bash
 # Restore from latest backup
 ./restore.sh

@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from core.adb import AdbDevice, AdbError
 from core.benchmark import BenchmarkEngine
 from core.debloater import DebloatEngine
+from core.tuner import WatchTuner
 from core.models import BenchmarkSnapshot
 from core.ui import (
     print_banner,
@@ -154,7 +155,10 @@ def cmd_debloat(args):
 
     # 2. Interactive Wizard or Selection
     print_section("Step 2: Debloat Configuration")
-    if hasattr(args, 'targets') and args.targets:
+    if hasattr(args, 'preset') and args.preset:
+        print_info(f"Loading '{args.preset}' preset profile...")
+        targets = debloater.load_preset(args.preset)
+    elif hasattr(args, 'targets') and args.targets:
         if os.path.isfile(args.targets):
             with open(args.targets, 'r') as f:
                 targets = [line.strip() for line in f if line.strip() and not line.startswith('#')]
@@ -257,6 +261,37 @@ def cmd_restore(args):
     if failed:
         print_warning(f"Failed to restore {len(failed)} packages: {', '.join(failed)}")
 
+def cmd_tune(args):
+    print_banner()
+    adb = get_adb(args.device)
+    tuner = WatchTuner(adb)
+
+    print_section("Wear OS System & Animation Tuning")
+
+    if args.restore:
+        print_info("Restoring settings to factory defaults (1.0x animations, standard Wi-Fi scanning)...")
+        applied, failed = tuner.restore_defaults()
+        print_success(f"Restored {applied} settings back to factory defaults.")
+        return
+
+    status = tuner.get_status()
+
+    if args.status:
+        print(f"  {Colors.BOLD}{'Setting':<32} {'Current':<12} {'Optimized':<12} {'Status'}{Colors.RESET}")
+        print(f"  {'─' * 65}")
+        for key, s in status.items():
+            st_text = f"{Colors.GREEN}Optimized{Colors.RESET}" if s["is_optimized"] else f"{Colors.DIM}Stock/Default{Colors.RESET}"
+            print(f"  {s['name']:<32} {s['current']:<12} {s['optimized']:<12} {st_text}")
+        return
+
+    speed = getattr(args, "speed", "0.5") or "0.5"
+    print_info(f"Applying speed & battery optimizations (Animation speed: {speed}x)...")
+    applied, failed = tuner.apply_optimizations(animation_speed=speed)
+    print_success(f"Applied {applied} performance & battery optimizations.")
+    print(f"\n  • {Colors.BOLD}Window & Transition Animations:{Colors.RESET} Set to {Colors.GREEN}{speed}x{Colors.RESET} (UI feels 2x faster)")
+    print(f"  • {Colors.BOLD}Wi-Fi Background Location Scan:{Colors.RESET}  Set to {Colors.GREEN}OFF{Colors.RESET} (Saves continuous radio probing)")
+    print(f"\n{Colors.DIM}To revert to factory defaults at any time, run: python3 main.py tune --restore{Colors.RESET}")
+
 def main():
     parser = argparse.ArgumentParser(
         description="CleanYourWatch: Measure, debloat, and optimize Samsung Galaxy Watch Wear OS."
@@ -282,7 +317,14 @@ def main():
     # debloat
     p_debloat = subparsers.add_parser("debloat", help="Interactive debloat wizard with before/after benchmarks")
     p_debloat.add_argument("-y", "--yes", action="store_true", help="Skip confirmation prompt")
+    p_debloat.add_argument("-p", "--preset", choices=["safe", "balanced", "extreme"], help="Apply a predefined debloat profile")
     p_debloat.add_argument("-t", "--targets", help="Comma-separated package list or file path")
+
+    # tune
+    p_tune = subparsers.add_parser("tune", help="Optimize Wear OS UI animations (0.5x) and background Wi-Fi scanning")
+    p_tune.add_argument("-s", "--status", action="store_true", help="Display current system settings and optimization status")
+    p_tune.add_argument("-r", "--restore", action="store_true", help="Revert settings to factory defaults")
+    p_tune.add_argument("--speed", default="0.5", choices=["0.5", "0.25", "0.0"], help="Target animation scale (default: 0.5)")
 
     # compare
     p_compare = subparsers.add_parser("compare", help="Compare two benchmark snapshots")
@@ -302,6 +344,7 @@ def main():
         print("  python3 main.py list      - View categorized bloatware and packages")
         print("  python3 main.py measure   - Take a resource usage benchmark")
         print("  python3 main.py debloat   - Start interactive debloat with before/after benchmark")
+        print("  python3 main.py tune      - Speed up UI animations & optimize Wi-Fi scanning")
         print("  python3 main.py restore   - Undo changes and re-enable packages")
         return
 
@@ -310,6 +353,7 @@ def main():
         "measure": cmd_measure,
         "list": cmd_list,
         "debloat": cmd_debloat,
+        "tune": cmd_tune,
         "compare": cmd_compare,
         "restore": cmd_restore
     }
