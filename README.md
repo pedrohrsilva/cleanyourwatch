@@ -6,6 +6,27 @@ Inspired by [CleanYourTV](https://github.com/Gathin23/cleanyourtv), **CleanYourW
 
 ---
 
+<a id="start-here"></a>
+## 📍 Start Here
+
+Choose your preferred path below:
+
+| What would you like to do? | Jump to Section | Overview |
+| :--- | :--- | :--- |
+| ⚡ **Debloat with AI (1-Prompt)** | [**1-Prompt AI Setup**](#method-a-ai-setup) | Copy-paste prompt into Cursor, Claude Code, Antigravity |
+| 💻 **Debloat Manually (CLI)** | [**Interactive Terminal CLI**](#method-b-manual-cli) | Run `./run.sh` with interactive questionnaire |
+| 📶 **Connect Watch over Wi-Fi** | [**Wi-Fi ADB & Pairing Guide**](#wifi-pairing) | Unlock developer options & pair watch wirelessly |
+| 📋 **Install Prerequisites** | [**Requirements & ADB Install**](#requirements) | 1-line ADB install commands for Mac, Windows, Linux |
+| 📊 **View Real Benchmark Data** | [**Galaxy Watch 6 Results**](#benchmark-results) | Live RAM, process reduction, and delta table |
+| 🔋 **Check Battery Impact** | [**Estimated Battery Savings**](#battery-savings) | Expected runtime gains (+15% to +50% per charge) |
+| ⚙️ **Understand the Architecture** | [**How It Works & Safety**](#how-it-works) | Why it's 100% reversible, safe, and zero-root |
+| 📖 **Explore CLI Options** | [**CLI Command Reference**](#cli-commands) | `measure`, `list`, `debloat`, `compare`, `restore` |
+| 🗂️ **Browse Bloatware List** | [**Package Catalog Overview**](#package-catalog) | All 260+ Galaxy Watch packages categorized |
+| 🛡️ **Revert & Undo** | [**Safety & Restoration Guide**](#safety-guarantee) | One-command full factory restoration |
+
+---
+
+<a id="key-features"></a>
 ## 🌟 Key Features
 
 * **📊 Real-time Before & After Benchmarking:** Real-time RAM profiling (`dumpsys meminfo`), active background services count, process table monitoring, and storage recovery metrics.
@@ -21,6 +42,7 @@ Inspired by [CleanYourTV](https://github.com/Gathin23/cleanyourtv), **CleanYourW
 
 ---
 
+<a id="benchmark-results"></a>
 ## 📱 Real-World Benchmark: Galaxy Watch 6 (SM-R940)
 
 The following benchmark was captured on a physical **Samsung Galaxy Watch 6 (SM-R940)** running **Wear OS (Android 16 / One UI 6 Watch)** over Wi-Fi ADB:
@@ -58,6 +80,7 @@ The following benchmark was captured on a physical **Samsung Galaxy Watch 6 (SM-
 
 ---
 
+<a id="battery-savings"></a>
 ## 🔋 Battery Savings Estimation
 
 By removing telemetry loops, continuous audio listening, and memory paging pressure, CleanYourWatch delivers noticeable battery life improvements:
@@ -72,6 +95,7 @@ By removing telemetry loops, continuous audio listening, and memory paging press
 
 ---
 
+<a id="requirements"></a>
 ## 📋 Requirements
 
 * **Python 3.8+** (Uses only Python's standard library — zero external pip packages required).
@@ -126,6 +150,7 @@ adb version
 
 ---
 
+<a id="how-it-works"></a>
 ## ⚙️ How It Works
 
 Samsung Galaxy Watches (and other Wear OS devices) run on Android. They have the standard **Android Debug Bridge (ADB)** built into Developer Options over your local Wi-Fi network.
@@ -137,8 +162,10 @@ Samsung Galaxy Watches (and other Wear OS devices) run on Android. They have the
 
 ---
 
+<a id="quick-start"></a>
 ## 🚀 Quick Start
 
+<a id="method-a-ai-setup"></a>
 ### ⚡ Method A: The 1-Prompt AI Setup (Recommended)
 
 Just like [CleanYourTV](https://github.com/Gathin23/cleanyourtv), CleanYourWatch is designed for **AI coding assistants** with shell access (such as Cursor, Claude Code, Antigravity, Gemini CLI, or GitHub Copilot Workspace).
@@ -148,7 +175,7 @@ Just like [CleanYourTV](https://github.com/Gathin23/cleanyourtv), CleanYourWatch
    git clone https://github.com/pedrohrsilva/cleanyourwatch.git
    cd cleanyourwatch
    ```
-2. Enable Wireless Debugging on your watch ([see instructions below](#-enabling-wireless-debugging--pairing)).
+2. Enable Wireless Debugging on your watch ([see instructions below](#wifi-pairing)).
 3. Open this folder in your AI coding assistant and copy-paste this prompt:
 
 > **Copy & Paste into your AI Assistant:**
@@ -164,6 +191,7 @@ The AI assistant will handle everything interactively, confirming your choices b
 
 ---
 
+<a id="method-b-manual-cli"></a>
 ### 💻 Method B: Interactive CLI (Manual)
 
 If you prefer running the interactive tool directly from your terminal:
@@ -181,6 +209,7 @@ python3 main.py debloat
 
 ---
 
+<a id="wifi-pairing"></a>
 ### 📶 Enabling Wireless Debugging & Pairing
 
 Before running the tool, connect your watch to your computer over Wi-Fi:
@@ -211,6 +240,7 @@ Before running the tool, connect your watch to your computer over Wi-Fi:
 
 ---
 
+<a id="cli-commands"></a>
 ## 📖 CLI Commands
 
 ### 1. Check Connected Watch Hardware & Live Memory
@@ -254,6 +284,7 @@ python3 main.py restore --file backups/backup_192_168_31_47_44713_20261030_13025
 
 ---
 
+<a id="package-catalog"></a>
 ## 🗂️ Package Catalog Overview
 
 | Category | Typical Packages | Default Action |
@@ -268,6 +299,7 @@ python3 main.py restore --file backups/backup_192_168_31_47_44713_20261030_13025
 
 ---
 
+<a id="safety-guarantee"></a>
 ## 🛡️ Safety Guarantee
 
 CleanYourWatch never deletes files from system storage. Suspended packages remain safely in ROM and can be re-enabled at any moment using `pm enable <package>` or `./restore.sh`.
