@@ -154,7 +154,19 @@ def cmd_debloat(args):
 
     # 2. Interactive Wizard or Selection
     print_section("Step 2: Debloat Configuration")
-    targets = debloater.interactive_wizard()
+    if hasattr(args, 'targets') and args.targets:
+        if os.path.isfile(args.targets):
+            with open(args.targets, 'r') as f:
+                targets = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+        else:
+            targets = [p.strip() for p in args.targets.split(',') if p.strip()]
+        # Filter against blacklist & installed
+        installed = adb.get_installed_packages()
+        disabled = adb.get_disabled_packages()
+        targets = [p for p in targets if p not in debloater.blacklist and p in installed and p not in disabled]
+        print_info(f"Loaded {len(targets)} target packages from argument.")
+    else:
+        targets = debloater.interactive_wizard()
 
     if not targets:
         print_info("No packages were selected for debloating. Exiting.")
@@ -270,6 +282,7 @@ def main():
     # debloat
     p_debloat = subparsers.add_parser("debloat", help="Interactive debloat wizard with before/after benchmarks")
     p_debloat.add_argument("-y", "--yes", action="store_true", help="Skip confirmation prompt")
+    p_debloat.add_argument("-t", "--targets", help="Comma-separated package list or file path")
 
     # compare
     p_compare = subparsers.add_parser("compare", help="Compare two benchmark snapshots")

@@ -1,0 +1,42 @@
+# ==============================================================================
+# CleanYourWatch - Debloat Target Configuration
+# ==============================================================================
+# User Preferences:
+#  - Keep ONLY Google Wallet (Disable Samsung Pay)
+#  - Keep Samsung Health
+#  - Remove ALL Voice Assistants (Bixby Voice, Bixby Wakeup, Google Assistant, IntelliVoice)
+#  - Keep Samsung Ecosystem Apps (Browser, SmartThings, Buds, Voice Recorder, etc.)
+#  - Keep Stock Watch Faces
+#  - Disable Telemetry, Analytics, Store Demos & Factory QA bloat
+# ==============================================================================
+
+# 1. Contactless Payments (Keep Google Wallet, Disable Samsung Pay)
+com.samsung.android.samsungpay.gear
+
+# 2. Voice Assistants (Disable All)
+com.samsung.android.bixby.wakeup
+com.samsung.android.bixby.agent
+com.google.android.wearable.assistant
+com.samsung.android.intellivoiceservice
+
+# 3. Telemetry, Analytics & Store Demo Bloat
+com.sec.android.diagmonagent
+com.samsung.sree
+com.samsung.sree.spin
+com.samsung.sree.countdown
+com.samsung.sree.digital
+com.samsung.sree.classic
+com.google.android.apps.wearable.retailattractloop
+com.samsung.android.watch.runestone.app
+com.sec.android.app.felicatest
+com.sec.nfc.felicalocktest
+com.sec.android.app.wlantest
+com.sec.android.app.servicemodeapp
+com.sec.facatfunction
+com.sem.factoryapp
+com.sec.android.app.factorykeystring
+com.samsung.android.providers.factory
+com.sec.android.app.parser
+com.samsung.android.aircommandmanager
+com.samsung.android.dqagent
+com.samsung.android.gru
