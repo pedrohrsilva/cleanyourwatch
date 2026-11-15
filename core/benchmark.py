@@ -1,6 +1,5 @@
 import re
 import json
-import time
 from datetime import datetime
 from typing import Dict, List, Any, Optional, Tuple
 
@@ -31,9 +30,9 @@ class BenchmarkEngine:
         meminfo_out = self.adb.shell("dumpsys meminfo", timeout=45)
         ram, top_procs = self._parse_meminfo(meminfo_out)
         if ram.total_kb == 0:
-            time.sleep(3)
-            meminfo_out = self.adb.shell("dumpsys meminfo", timeout=45)
-            ram, top_procs = self._parse_meminfo(meminfo_out)
+            # Low-RAM watches (e.g. Galaxy Watch 4) hit dumpsys' internal 10s
+            # dump timeout before the "Total RAM" summary is printed.
+            ram = self._parse_proc_meminfo(self.adb.shell("cat /proc/meminfo"))
 
         # 3. Storage (df -k /data)
         df_out = self.adb.shell("df -k /data")
@@ -117,7 +116,11 @@ class BenchmarkEngine:
 
         # Parse top processes
         top_procs = []
-        pss_section = re.search(r'Total PSS by process:(.*?)(?:Total PSS by category:|Total RAM:)', out, re.DOTALL)
+        pss_section = re.search(
+            r'Total PSS by process:(.*?)(?:Total PSS by category:|Total RAM:|\*\*\* SERVICE|\Z)',
+            out,
+            re.DOTALL
+        )
         if pss_section:
             proc_lines = re.findall(r'^\s*([\d,]+)K:\s+([^\s(]+)(?:\s+\(pid\s+(\d+))?', pss_section.group(1), re.MULTILINE)
             for mem_str, name, pid_str in proc_lines[:20]:
@@ -131,6 +134,29 @@ class BenchmarkEngine:
                 })
 
         return ram, top_procs
+
+    @staticmethod
+    def _parse_proc_meminfo(out: str) -> RamStats:
+        """Parses /proc/meminfo (values in kB). 'Free' uses MemAvailable when present."""
+        values: Dict[str, int] = {}
+        for line in out.splitlines():
+            m = re.match(r'^(\w+):\s+(\d+)', line.strip())
+            if m:
+                values[m.group(1)] = int(m.group(2))
+
+        total_kb = values.get("MemTotal", 0)
+        free_kb = values.get("MemAvailable", values.get("MemFree", 0))
+        swap_total = values.get("SwapTotal", 0)
+        swap_used = max(swap_total - values.get("SwapFree", swap_total), 0)
+
+        return RamStats(
+            total_kb=total_kb,
+            used_kb=max(total_kb - free_kb, 0),
+            free_kb=free_kb,
+            cached_kb=values.get("Cached", 0),
+            zram_used_kb=swap_used,
+            zram_total_kb=swap_total
+        )
 
     def _parse_storage(self, out: str) -> StorageStats:
         lines = out.strip().splitlines()
