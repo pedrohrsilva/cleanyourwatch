@@ -346,6 +346,15 @@ CleanYourWatch never deletes files from system storage. Suspended packages remai
 
 ---
 
+## Additional device reports
+
+- [SM-L715U on Android 17: custom-profile run](docs/device-reports/sm-l715u-android17.md)
+  — three-sample resource comparison, post-reboot checks, and firmware-specific
+  notes about IntelliVoice, assistant settings, and remaining scheduled alarms.
+  This is a single-device report, not a universal safe-disable preset.
+
+---
+
 ## 🤝 Contributing & Support
 
 Issues, PRs, and package catalogs for other Wear OS models (Galaxy Watch 4/5/7/Ultra, Pixel Watch, TicWatch) are welcome!
