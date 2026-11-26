@@ -327,15 +327,19 @@ python3 main.py restore --file backups/backup_192_168_31_47_44713_20261030_13025
 <a id="package-catalog"></a>
 ## 🗂️ Package Catalog Overview
 
+CleanYourWatch auto-detects the connected watch and loads the matching catalog from `packages/`:
+- **`packages/galaxy_watch6.json`** — Samsung Galaxy Watch 6 (`SM-R940`) & Galaxy Watch Wear OS
+- **`packages/ticwatch_pro3_ultra.json`** — Mobvoi TicWatch Pro 3 / Pro 3 Ultra GPS (`rubyfish` / `rover`, Wear OS 3.5), including a hardcoded blacklist guard protecting `com.mobvoi.wear.mcuservice.aw` (dual-layer FSTN LCD "Essential Mode" & tilt backlight), `com.mobvoi.wear.system.aw`, `com.mobvoi.companion.aw`, and `com.mobvoi.wear.refsysui`
+
 | Category | Typical Packages | Default Action |
 | :--- | :--- | :--- |
-| **Telemetry & Analytics** | Samsung DiagMon, Samsung Global Goals (SREE), Retail Attract Loop, Rubin Customization | **Disable** (Zero functional impact) |
+| **Telemetry & Analytics** | Samsung DiagMon, Samsung Global Goals (SREE), Mobvoi Privacy/AppsService, Factory Test Daemons, Retail Attract Loop | **Disable** (Zero functional impact) |
 | **Voice Assistants** | Bixby Voice, Bixby Wakeup ("Hi Bixby"), Google Assistant | **User Choice** (Wakeup drains mic constantly) |
-| **Payments** | Samsung Pay / Wallet, Google Wallet | **User Choice** (Keep preferred provider) |
-| **Health Suite** | Samsung Health, Samsung Health Monitor (ECG/BP) | **User Choice** (Keep if tracking fitness) |
-| **Samsung Ecosystem** | Samsung Internet, Voice Recorder, SmartThings, Modes & Routines, Smart Switch | **User Choice** (Keep what you use) |
-| **Stock Watch Faces** | 35+ pre-installed Samsung watch faces | **Optional** (Free clutter if using custom face) |
-| **Critical System** | System UI, Bluetooth, Settings, Framework, Honeyboard keyboard, Watchface Runtime | **BLACKLISTED** (Safety guard: never touched) |
+| **Payments & NFC** | Samsung Pay / Wallet, Google Wallet, NFC Stack | **User Choice** (Keep preferred provider) |
+| **Health Suite** | Samsung Health (ECG/BP), Mobvoi TicHealth / TicExercise / TicCare | **User Choice** (Keep preferred tracker) |
+| **OEM Ecosystem** | Samsung Internet, Voice Recorder, SmartThings, Modes & Routines, Smart Switch | **User Choice** (Keep what you use) |
+| **Stock Watch Faces** | 35+ Samsung stock watch faces, Mobvoi TimeShow & stock watch faces | **Optional** (Free clutter if using custom face) |
+| **Critical System** | System UI, Bluetooth, Settings, Framework, Watchface Runtime, TicWatch FSTN LCD controller (`mcuservice.aw`) | **BLACKLISTED** (Safety guard: never touched) |
 
 ---
 

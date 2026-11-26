@@ -1,0 +1,257 @@
+{
+  "device": "TicWatch Pro 3 / Pro 3 Ultra GPS (rubyfish / rover, Wear OS 3.5)",
+  "version": "1.0.0",
+  "categories": {
+    "telemetry_and_bloat": {
+      "title": "Telemetry, Partner Bloat & Factory Stubs",
+      "description": "Mobvoi telemetry uploaders, promo services, retail demos, and unused factory/setup stubs. Safe to disable with zero impact on watch functions.",
+      "default_action": "disable",
+      "packages": [
+        {
+          "package_name": "com.mobvoi.wear.privacy.aw",
+          "display_name": "Mobvoi Telemetry & Privacy",
+          "safety": "recommended",
+          "description": "Collects and uploads Mobvoi usage telemetry and diagnostics in the background.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.mobvoi.wear.account.aw",
+          "display_name": "Mobvoi Cloud Account Sync",
+          "safety": "recommended",
+          "description": "Mobvoi account background sync service. Not required if you use Google Fit instead of Mobvoi Health.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.mobvoi.wear.appsservice",
+          "display_name": "Mobvoi Apps Promo Service",
+          "safety": "recommended",
+          "description": "Background promotional app recommendation service from Mobvoi.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.hc.psyService",
+          "display_name": "Factory Hardware Test Daemon",
+          "safety": "recommended",
+          "description": "Manufacturing QA and hardware test service left over from factory firmware.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.apps.wearable.retailattractloop",
+          "display_name": "Retail Attract Loop Demo",
+          "safety": "recommended",
+          "description": "Store display demo loop for retail units.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "android.autoinstalls.config.mobvoi.rover",
+          "display_name": "Mobvoi Play Auto-Install Stub",
+          "safety": "recommended",
+          "description": "Partner configuration stub for pre-installing promotional apps during initial setup.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.android.providers.userdictionary",
+          "display_name": "User Dictionary Provider",
+          "safety": "recommended",
+          "description": "Legacy Android keyboard user dictionary provider unused on Wear OS.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.android.managedprovisioning",
+          "display_name": "Managed Provisioning (MDM)",
+          "safety": "recommended",
+          "description": "Enterprise work-profile provisioning wizard unused on consumer watches.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.android.wallpaperbackup",
+          "display_name": "Wallpaper Cloud Backup Stub",
+          "safety": "recommended",
+          "description": "Phone wallpaper backup transport stub leftover from AOSP.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.wearable.setupwizard",
+          "display_name": "Wear OS Setup Wizard",
+          "safety": "recommended",
+          "description": "Out-of-box initial pairing wizard; no longer needed once the watch is paired.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "mobvoi_health": {
+      "title": "Mobvoi Health & Fitness Suite (TicHealth / TicExercise)",
+      "description": "Mobvoi's bundled fitness daemons. Safe to disable if you use Google Fit or another third-party tracker; disabling frees significant background RAM and sensor wakeups.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.mobvoi.wear.health.aw",
+          "display_name": "TicHealth",
+          "safety": "optional",
+          "description": "Mobvoi health hub and background sensor daemon (steps, heart rate, sleep).",
+          "memory_impact": "high",
+          "battery_impact": "high"
+        },
+        {
+          "package_name": "com.mobvoi.wear.fitness.aw",
+          "display_name": "TicExercise",
+          "safety": "optional",
+          "description": "Mobvoi workout tracking daemon and GPS/motion listener.",
+          "memory_impact": "high",
+          "battery_impact": "high"
+        },
+        {
+          "package_name": "com.mobvoi.care",
+          "display_name": "TicCare",
+          "safety": "optional",
+          "description": "Mobvoi family health sharing and promotional companion app.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "payments": {
+      "title": "Contactless Payments & NFC Stack",
+      "description": "Google Wallet and NFC background services. Keep if you use tap-to-pay on your watch; disabling saves ~60MB RAM total.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.google.android.apps.walletnfcrel",
+          "display_name": "Google Wallet / Google Pay",
+          "safety": "optional",
+          "description": "Google Wallet contactless payment app (~29MB RAM).",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.android.nfc",
+          "display_name": "Android NFC Service",
+          "safety": "optional",
+          "description": "NFC hardware daemon (~31MB RAM). Only disable if you do not use contactless payments or NFC.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.clockwork.nfc",
+          "display_name": "Wear OS NFC Helper",
+          "safety": "optional",
+          "description": "Wear OS tap-to-pay placement overlay helper. Unused if Google Wallet and NFC are disabled.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "mobvoi_stock_watchfaces": {
+      "title": "Mobvoi Watch Faces & TimeShow Store",
+      "description": "Pre-installed Mobvoi watch faces and the TimeShow watch face storefront. Disable if you use Google Pixel Watch Faces or other third-party watch faces.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.mobvoi.mwf.magicfaces",
+          "display_name": "TimeShow Watch Face Store",
+          "safety": "optional",
+          "description": "Mobvoi TimeShow watch face marketplace and background promotional service.",
+          "memory_impact": "medium",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.mobvoi.wear.watchface.p5",
+          "display_name": "Mobvoi Stock Watch Faces",
+          "safety": "optional",
+          "description": "Heavy bundled Mobvoi watch face pack.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        }
+      ]
+    },
+    "google_optional": {
+      "title": "Google Wear OS Optional Apps",
+      "description": "Pre-installed Google apps and services that can be safely disabled if you do not use them on your wrist.",
+      "default_action": "ask",
+      "packages": [
+        {
+          "package_name": "com.google.android.tts",
+          "display_name": "Google Speech Recognition & TTS",
+          "safety": "optional",
+          "description": "Google Text-to-Speech engine (~70MB RAM on Wear OS 3.5).",
+          "memory_impact": "high",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.google.android.apps.maps",
+          "display_name": "Google Maps",
+          "safety": "optional",
+          "description": "Google Maps turn-by-turn navigation background service (~46MB RAM).",
+          "memory_impact": "high",
+          "battery_impact": "medium"
+        },
+        {
+          "package_name": "com.google.android.marvin.talkback",
+          "display_name": "Android TalkBack (Screen Reader)",
+          "safety": "optional",
+          "description": "Accessibility screen reader service.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.calendar",
+          "display_name": "Google Calendar",
+          "safety": "optional",
+          "description": "Google Calendar app on watch (~30MB RAM).",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.android.providers.calendar",
+          "display_name": "Calendar Storage Provider",
+          "safety": "optional",
+          "description": "Background calendar sync provider (~27MB RAM). Disable only alongside Google Calendar.",
+          "memory_impact": "medium",
+          "battery_impact": "low"
+        },
+        {
+          "package_name": "com.google.android.keep",
+          "display_name": "Google Keep Notes",
+          "safety": "optional",
+          "description": "Google Keep notes client on watch.",
+          "memory_impact": "low",
+          "battery_impact": "low"
+        }
+      ]
+    }
+  },
+  "critical_blacklist": [
+    "android",
+    "com.mobvoi.wear.mcuservice.aw",
+    "com.mobvoi.wear.system.aw",
+    "com.mobvoi.companion.aw",
+    "com.mobvoi.wear.refsysui",
+    "com.google.android.apps.wearable.systemui",
+    "com.google.android.apps.wearable.settings",
+    "com.google.android.wearable.app",
+    "com.google.android.gms",
+    "com.google.android.gsf",
+    "com.android.vending",
+    "com.android.bluetooth",
+    "com.android.networkstack",
+    "com.android.networkstack.process",
+    "com.android.inputdevices",
+    "com.android.permissioncontroller",
+    "com.google.android.packageinstaller",
+    "com.android.server.telecom",
+    "com.android.phone",
+    "com.google.wear.services",
+    "com.android.providers.settings",
+    "com.android.keychain"
+  ]
+}

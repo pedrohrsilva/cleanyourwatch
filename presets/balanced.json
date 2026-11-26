@@ -24,6 +24,17 @@
     "com.samsung.android.dqagent",
     "com.samsung.android.gru",
     "com.samsung.android.samsungpay.gear",
-    "com.samsung.android.bixby.wakeup"
+    "com.samsung.android.bixby.wakeup",
+    "com.mobvoi.wear.privacy.aw",
+    "com.mobvoi.wear.account.aw",
+    "com.mobvoi.wear.appsservice",
+    "com.mobvoi.care",
+    "com.mobvoi.mwf.magicfaces",
+    "com.hc.psyService",
+    "android.autoinstalls.config.mobvoi.rover",
+    "com.android.providers.userdictionary",
+    "com.android.managedprovisioning",
+    "com.android.wallpaperbackup",
+    "com.google.android.wearable.setupwizard"
   ]
 }
