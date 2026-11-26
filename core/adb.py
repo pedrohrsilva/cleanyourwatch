@@ -83,7 +83,11 @@ class AdbDevice:
 
     @property
     def brand(self) -> str:
-        return self.get_prop("ro.product.brand") or "Samsung"
+        return self.get_prop("ro.product.brand") or "Unknown"
+
+    @property
+    def device(self) -> str:
+        return self.get_prop("ro.product.device") or ""
 
     @property
     def android_version(self) -> str:

@@ -22,6 +22,14 @@
     "com.sec.android.app.parser",
     "com.samsung.android.aircommandmanager",
     "com.samsung.android.dqagent",
-    "com.samsung.android.gru"
+    "com.samsung.android.gru",
+    "com.mobvoi.wear.privacy.aw",
+    "com.mobvoi.wear.appsservice",
+    "com.hc.psyService",
+    "android.autoinstalls.config.mobvoi.rover",
+    "com.android.providers.userdictionary",
+    "com.android.managedprovisioning",
+    "com.android.wallpaperbackup",
+    "com.google.android.wearable.setupwizard"
   ]
 }

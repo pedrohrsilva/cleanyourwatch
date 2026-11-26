@@ -20,10 +20,27 @@ class DebloatEngine:
     def __init__(self, adb: AdbDevice, db_path: Optional[str] = None):
         self.adb = adb
         if db_path is None:
-            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            db_path = os.path.join(base_dir, "packages", "galaxy_watch6.json")
+            db_path = self._detect_catalog_path()
         self.db_path = db_path
         self.catalog = self._load_catalog()
+
+    def _detect_catalog_path(self) -> str:
+        """Selects the matching hardware package catalog based on connected watch properties."""
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        packages_dir = os.path.join(base_dir, "packages")
+
+        identifiers = " ".join([
+            getattr(self.adb, "brand", "") or "",
+            getattr(self.adb, "model", "") or "",
+            getattr(self.adb, "device", "") or "",
+        ]).lower()
+
+        if any(token in identifiers for token in ("mobvoi", "ticwatch", "rubyfish", "rover")):
+            ticwatch_db = os.path.join(packages_dir, "ticwatch_pro3_ultra.json")
+            if os.path.isfile(ticwatch_db):
+                return ticwatch_db
+
+        return os.path.join(packages_dir, "galaxy_watch6.json")
 
     def _load_catalog(self) -> Dict[str, Any]:
         with open(self.db_path, "r", encoding="utf-8") as f:
@@ -205,12 +222,13 @@ class DebloatEngine:
                 opt_actions.append(lambda: None)
 
             opts.append("Disable ALL contactless payment services (saves background NFC/RAM)")
-            opt_actions.append(lambda: [packages_to_disable.add(p) for p in [samsung_pay, google_pay] if p in installed])
+            all_payment_pkgs = [p["package_name"] for p in payment_pkgs]
+            opt_actions.append(lambda: [packages_to_disable.add(p) for p in all_payment_pkgs if p in installed])
 
             choice = prompt_choice("Which payment service do you want to keep on your watch?", opts, default_idx=0)
             opt_actions[choice]()
 
-        # 3. Samsung Health & Fitness Suite
+        # 3. Health & Fitness Suite (Samsung Health or Mobvoi Health)
         health_pkgs = get_installed_in_cat("samsung_health")
         if health_pkgs:
             print(f"\n{Colors.BOLD}[3/6] Samsung Health & Fitness Suite{Colors.RESET}")
@@ -225,6 +243,22 @@ class DebloatEngine:
             )
             if choice == 1:
                 for p in health_pkgs:
+                    packages_to_disable.add(p["package_name"])
+
+        mobvoi_health_pkgs = get_installed_in_cat("mobvoi_health")
+        if mobvoi_health_pkgs:
+            print(f"\n{Colors.BOLD}[3/6] Mobvoi Health & Fitness Suite (TicHealth / TicExercise / TicCare){Colors.RESET}")
+            print("  Mobvoi health daemons consume significant background RAM. Safe to disable if you use Google Fit.")
+            choice = prompt_choice(
+                "Do you want to keep Mobvoi's TicHealth / TicExercise suite?",
+                [
+                    "Keep Mobvoi Health active",
+                    "Disable Mobvoi Health suite (Recommended if using Google Fit — preserves FSTN LCD)"
+                ],
+                default_idx=0
+            )
+            if choice == 1:
+                for p in mobvoi_health_pkgs:
                     packages_to_disable.add(p["package_name"])
 
         # 4. Voice Assistants
@@ -302,7 +336,7 @@ class DebloatEngine:
                     if ans == 1:
                         packages_to_disable.add(p_name)
 
-        # 6. Samsung Pre-installed Stock Watch Faces
+        # 6. Pre-installed Stock Watch Faces (Samsung or Mobvoi)
         watchface_pkgs = get_installed_in_cat("samsung_stock_watchfaces")
         if watchface_pkgs:
             print(f"\n{Colors.BOLD}[6/6] Samsung Stock Watch Faces{Colors.RESET}")
@@ -319,6 +353,48 @@ class DebloatEngine:
             if choice == 0:
                 for p in watchface_pkgs:
                     packages_to_disable.add(p["package_name"])
+
+        mobvoi_wf_pkgs = get_installed_in_cat("mobvoi_stock_watchfaces")
+        if mobvoi_wf_pkgs:
+            print(f"\n{Colors.BOLD}[6/6] Mobvoi Watch Faces & TimeShow Store{Colors.RESET}")
+            print("  Disabling TimeShow and stock Mobvoi faces removes promo clutter if you use custom/Pixel faces.")
+            choice = prompt_choice(
+                "Do you want to disable Mobvoi stock watch faces and TimeShow?",
+                [
+                    "Disable Mobvoi stock watch faces & TimeShow",
+                    "Keep Mobvoi stock watch faces"
+                ],
+                default_idx=0
+            )
+            if choice == 0:
+                for p in mobvoi_wf_pkgs:
+                    packages_to_disable.add(p["package_name"])
+
+        # Optional Google Wear OS Apps (Maps, TTS, Calendar, Keep, TalkBack)
+        google_opt_pkgs = get_installed_in_cat("google_optional")
+        if google_opt_pkgs and mobvoi_health_pkgs:
+            print(f"\n{Colors.BOLD}[Optional] Google Wear OS Apps (Maps, TTS, Calendar, Keep){Colors.RESET}")
+            print("  Google TTS (~70MB), Maps (~46MB), and Calendar (~57MB) can be disabled if unused on your wrist.")
+            choice = prompt_choice(
+                "How would you like to handle optional Google Wear OS apps?",
+                [
+                    "Keep all Google apps enabled",
+                    "Custom selection (ask app-by-app)"
+                ],
+                default_idx=0
+            )
+            if choice == 1:
+                for p in google_opt_pkgs:
+                    p_name = p["package_name"]
+                    p_desc = p.get("description", "")
+                    mem_impact = p.get("memory_impact", "low")
+                    ans = prompt_choice(
+                        f"App: {Colors.BOLD}{p['display_name']}{Colors.RESET} ({p_name})\n  Impact: {mem_impact} RAM | {p_desc}",
+                        ["Keep this app", "Disable this app"],
+                        default_idx=0
+                    )
+                    if ans == 1:
+                        packages_to_disable.add(p_name)
 
         # Filter out anything in blacklist or already disabled
         final_list = [

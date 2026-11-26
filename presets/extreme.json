@@ -72,6 +72,23 @@
     "com.samsung.android.watch.watchface.basicdashboard",
     "com.samsung.android.watch.watchface.mystyle",
     "com.samsung.android.watch.watchface.simpleanalogue",
-    "com.samsung.android.watch.watchface.dynamicfont"
+    "com.samsung.android.watch.watchface.dynamicfont",
+    "com.mobvoi.wear.privacy.aw",
+    "com.mobvoi.wear.account.aw",
+    "com.mobvoi.wear.appsservice",
+    "com.mobvoi.wear.health.aw",
+    "com.mobvoi.wear.fitness.aw",
+    "com.mobvoi.care",
+    "com.mobvoi.mwf.magicfaces",
+    "com.mobvoi.wear.watchface.p5",
+    "com.hc.psyService",
+    "android.autoinstalls.config.mobvoi.rover",
+    "com.android.providers.userdictionary",
+    "com.android.managedprovisioning",
+    "com.android.wallpaperbackup",
+    "com.google.android.wearable.setupwizard",
+    "com.google.android.marvin.talkback",
+    "com.google.android.tts",
+    "com.google.android.apps.maps"
   ]
 }
